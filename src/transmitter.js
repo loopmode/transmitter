@@ -32,10 +32,16 @@ function transmitter() {
     }
   }
 
+  const destroy = () => {
+    subscriptions.forEach(onChange => unsubscribe(onChange));
+    subscriptions.length = 0;
+  }
+
   return {
     publish,
     subscribe,
-    $subscriptions: subscriptions,
+    destroy,
+    $subscriptions: subscriptions
   }
 }
 
